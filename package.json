@@ -1,6 +1,6 @@
 {
   "name": "@juicyllama/nestjs-redoc",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "NestJS ReDoc Frontend For Express",
   "repository": {
     "type": "git",
@@ -16,17 +16,16 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf ./dist",
+    "start:dev": "tsc -w",
     "build": "tsc",
+    "prepare": "npm run build",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"./src/**/*.ts\" --fix",
-    "prepublish:next": "npm run build",
-    "publish:next": "npm publish --access public --tag next",
-    "prepublish": "npm run build",
-    "publish": "npm publish --access public",
-    "test": "jest --runInBand --detectOpenHandles --forceExit --passWithNoTests",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
     "test:clear": "npx jest --clearCache",
     "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
     "release": "release-it --ci",
     "release:minor": "release-it minor --ci",
     "release:major": "release-it major --ci"
@@ -38,7 +37,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
+    "joi": "^17.7.0",
     "express-basic-auth": "^1.2.1",
     "express-handlebars": "^6.0.7"
   },
@@ -77,6 +76,7 @@
   "release-it": {
     "hooks": {
       "before:init": [
+        "npm run prepare",
         "npm run format",
         "npm run lint"
       ],
