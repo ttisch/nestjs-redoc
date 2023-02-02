@@ -160,9 +160,4 @@ Bellow are a list of changes, some might go undocumented
 - 2.1.1 - Fixed CSP issue on Safari browser
 - 2.2.0 - Added version property, this way you can pin redoc to a specific version
 - 2.2.2 - Updated to support Nest 8
-
-## 📋 ToDo
-
-- Add Fastify support
-- Add the option to use a spec URL instead of document
-- Fix tests
+- 2.3.0 - Updated all dependencies to latest versions including Nest 9.3
