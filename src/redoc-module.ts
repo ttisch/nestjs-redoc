@@ -74,7 +74,6 @@ export class RedocModule {
 		// Serve swagger spec in another URL appended to the normalized path
 		const docUrl = resolve(resolvedPath, `${options.docName}.json`)
 		// create helper to convert metadata to JSON
-		console.log(handlebars)
 		const hbs = handlebars.create({
 			helpers: {
 				toJSON: function (object: any) {
