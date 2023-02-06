@@ -1,13 +1,13 @@
-import { HttpServer, INestApplication } from '@nestjs/common'
+import { INestApplication } from '@nestjs/common'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { OpenAPIObject } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import expressAuth from 'express-basic-auth'
-import handlebars from 'express-handlebars'
+import * as handlebars from 'express-handlebars'
 import pathModule from 'path'
 import { resolve } from 'url'
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces'
-import { schema } from './model/options.model'
+import { schema } from './model'
 
 export class RedocModule {
 	/**
@@ -27,10 +27,10 @@ export class RedocModule {
 		try {
 			const _options = await this.validateOptionsObject(options, document)
 			const redocDocument = this.addVendorExtensions(_options, <RedocDocument>document)
-			const httpAdapter: HttpServer = app.getHttpAdapter()
+			/*const httpAdapter: HttpServer = app.getHttpAdapter()
 			if (httpAdapter && httpAdapter.constructor && httpAdapter.constructor.name === 'FastifyAdapter') {
 				return this.setupFastify()
-			}
+			}*/
 			return await this.setupExpress(path, <NestExpressApplication>app, redocDocument, _options)
 		} catch (error) {
 			throw error
@@ -74,6 +74,7 @@ export class RedocModule {
 		// Serve swagger spec in another URL appended to the normalized path
 		const docUrl = resolve(resolvedPath, `${options.docName}.json`)
 		// create helper to convert metadata to JSON
+		console.log(handlebars)
 		const hbs = handlebars.create({
 			helpers: {
 				toJSON: function (object: any) {

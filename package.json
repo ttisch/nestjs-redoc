@@ -1,6 +1,6 @@
 {
   "name": "@juicyllama/nestjs-redoc",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "NestJS ReDoc Frontend For Express",
   "repository": {
     "type": "git",
@@ -77,7 +77,8 @@
       "before:init": [
         "npm run prepare",
         "npm run format",
-        "npm run lint"
+        "npm run lint",
+        "npm run build"
       ],
       "after:release": "echo ✅ Successfully released ${name} v${version} to ${npm.name}."
     },
