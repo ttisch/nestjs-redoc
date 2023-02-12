@@ -1,53 +1,57 @@
+<div align="center">
+  <a href="https://juicyllama.com/" target="_blank">
+    <img src="https://juicyllama.com/assets/images/icon.png" width="100" alt="JuicyLlama Logo" />
+  </a>
+</div>
+
 <h1 align="center">
-  NestJS-Redoc
+  JuicyLlama NestJS-Redoc
   <h4 align="center">ReDoc powered frontend for your NestJS API spec</h4>
 </h1>
 
-<div align="center">
-  <a href="http://makeapullrequest.com">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs welcome" />
-  </a>
-  <a href="https://github.com/nestjs/nest">
-    <img src="https://raw.githubusercontent.com/nestjsx/crud/master/img/nest-powered.svg?sanitize=true" alt="Nest Powered" />
-  </a>
-   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</div>
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 
-<div align="center">
 
-[⚡ Features](#-Features) |
-[🗿 Installation](#-Installation) |
-[❓ How to use](#-How-to-use) |
-[👨‍💻👩‍💻 Contributors](#--Contributors) |
-[📜 Changelog](#-Changelog) |
-[📋 ToDo](#-ToDo)
 
-</div>
 
-<img src="./redoc.png"/>
+## Navigation
+
+[📒 Description](#-Description)
+
+[🗿 Installation](#-Installation)
+
+[❓ How to use](#-How-to-use)
+
+[👨‍💻👩‍💻 Contribute](#--Contribute)
+
+[📜 Changelog](#-Changelog)
+
+[🐛 Bugs / Feature Requests](#-bugs--feature-requests)
+
+
+
+## 📒 Description
 
 <p align="center">
 
 📒 This is a [ReDoc](https://github.com/Redocly/redoc) powered frontend for your NestJS API spec.
 
+> It was originally cloned from [@mxarc/nestjs-redoc](https://github.com/mxarc/nestjs-redoc) however the last commit was on 3rd August 2021 and no longer supports the latest version of NestJs. This fork is to keep the package up to date with the latest NestJs version.
+
 </p>
-
-## ⚡ Features
-
-- Customizable theme
-- It's almost a drop in replacement for you current swagger UI, you only need to import this package and modify any settings you may want to change (e.g: Page title, ReDoc options)
 
 ## 🗿 Installation
 
-Using npm: `npm i nestjs-redoc`
-
-Using yarn: `yarn add nestjs-redoc`
+`npm i nestjs-redoc`
 
 ## ❓ How to use
 
 You need to install the [Swagger Module](https://github.com/nestjs/swagger) first if you want to get definitions updated with your project.
-
-In future versions you will be able to pass a URL parameter as document, but for the moment you need this document object from the swagger module
 
 ```typescript
 const options = new DocumentBuilder()
@@ -124,9 +128,6 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 | tags                    | Tag collection                                                                                                                                        | string[]          |
 | redocVersion            | Set an specific redoc version                                                                                                                         | string,number     | By default it's "latest"                   |
 
-
-
-
 **Note**: If you want to change your ReDoc theme settings, take a look at the official ReDoc documentation: <https://github.com/Redocly/redoc/blob/master/src/theme.ts>
 
 Apply the properties defined in ResolvedThemeInterface to the key called "theme" in the redoc options
@@ -140,24 +141,16 @@ Apply the properties defined in ResolvedThemeInterface to the key called "theme"
 | altText         | Alt tag for Logo                                                                      | string | PetStore |
 | href            | href tag for Logo, it defaults to the host used for your API spec                     | string |
 
-## 👨‍💻👩‍💻 Contributors
+## 👨‍💻👩‍💻 Contribute
 
-- Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helped with code refactoring and unit tests! 👏
-- @joemaidman
+1. Clone Repo
+2. Install dependencies (`npm install`)
+3. Create your feature branch (`git checkout -b [GIT-XX] my-new-feature`)
+4. Commit your changes (`git commit -am 'Added some feature'`)
+5. Test your changes (`npm test`)
+6. Push to the branch (`git push origin [GIT-XX] my-new-feature`)
+7. [Create new Pull Request](https://help.github.com/articles/creating-a-pull-request/)
 
-## 📜 Changelog
+## 🐛 Bugs / Feature Requests
 
-Bellow are a list of changes, some might go undocumented
-
-- 1.0.0 - First release
-- 1.1.0 - Minor changes, nothing too important
-- 1.2.0 - Added unit tests, refactored code
-- 1.2.1 - Updated to work with the latest version of nest swagger module
-- 1.2.2 - Fixed issue with URL on windows
-- 1.3.0 - Added favicon option (by @joemaidman)
-- 2.0.0 - Added authentication option, fixed issues with CSP and nestjs version compatibility issues
-- 2.1.0 - Added x-tagGroups extension property
-- 2.1.1 - Fixed CSP issue on Safari browser
-- 2.2.0 - Added version property, this way you can pin redoc to a specific version
-- 2.2.2 - Updated to support Nest 8
-- 2.3.0 - Updated all dependencies to latest versions including Nest 9.3
+Please submit bugs and feature requests via the Github [issue tracker](https://github.com/juicyllama-community/nestjs-redoc/issues) or if it's a question please use the [Discussions](https://github.com/juicyllama-community/nestjs-redoc/discussions)
