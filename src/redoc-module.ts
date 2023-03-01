@@ -1,4 +1,4 @@
-import { INestApplication } from '@nestjs/common'
+import { INestApplication, Logger } from '@nestjs/common'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { OpenAPIObject } from '@nestjs/swagger'
 import { Request, Response } from 'express'
@@ -9,6 +9,8 @@ import { resolve } from 'url'
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces'
 import { schema } from './model'
 
+const logger = new Logger('RedocModule')
+
 export class RedocModule {
 	/**
 	 * Setup ReDoc frontend
@@ -16,39 +18,47 @@ export class RedocModule {
 	 * @param app - NestApplication
 	 * @param document - Swagger document object
 	 * @param options - Init options
+	 * @param debug - Debug mode
 	 */
 	public static async setup(
 		path: string,
 		app: INestApplication,
 		document: OpenAPIObject,
 		options: RedocOptions,
+		debug?: boolean,
 	): Promise<void> {
 		// Validate options object
 		try {
-			const _options = await this.validateOptionsObject(options, document)
+			if (debug) {
+				logger.verbose('Debug mode is enabled')
+			}
+			const _options = await this.validateOptionsObject(options, document, debug)
 			const redocDocument = this.addVendorExtensions(_options, <RedocDocument>document)
-			/*const httpAdapter: HttpServer = app.getHttpAdapter()
-			if (httpAdapter && httpAdapter.constructor && httpAdapter.constructor.name === 'FastifyAdapter') {
-				return this.setupFastify()
-			}*/
 			return await this.setupExpress(path, <NestExpressApplication>app, redocDocument, _options)
 		} catch (error) {
+			if (debug) {
+				console.table(options)
+				console.dir(document)
+				logger.error(error)
+			}
 			throw error
 		}
 	}
 
-	/**
-	 * Setup fastify (not implemented yet)
-	 */
-	private static async setupFastify(): Promise<void> {
-		throw new Error('Fastify is not implemented yet')
-	}
-
-	private static async validateOptionsObject(options: RedocOptions, document: OpenAPIObject): Promise<RedocOptions> {
+	private static async validateOptionsObject(
+		options: RedocOptions,
+		document: OpenAPIObject,
+		debug?: boolean,
+	): Promise<RedocOptions> {
 		try {
 			return schema(document).validateAsync(options) as RedocOptions
 		} catch (error) {
 			// Something went wrong while parsing config object
+			if (debug) {
+				console.table(options)
+				console.dir(document)
+				console.error(error)
+			}
 			throw new TypeError(error.message)
 		}
 	}

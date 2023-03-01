@@ -7,3 +7,4 @@ src/
 .github/
 .huskyrc
 commitlint.*
+.idea
