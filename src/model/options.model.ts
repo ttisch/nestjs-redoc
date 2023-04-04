@@ -8,6 +8,7 @@ export const schema = (document: OpenAPIObject) =>
 			.optional()
 			.default(document.info ? document.info.title : 'Swagger documentation'),
 		favicon: Joi.string().optional(),
+		customCssUrl: Joi.string().optional(),
 		logo: {
 			url: Joi.string().optional().uri(),
 			backgroundColor: Joi.string().optional().regex(new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')),
