@@ -5,6 +5,7 @@ export interface RedocOptions {
 	title?: string
 	/** Web site favicon URL */
 	favicon?: string
+	customCssUrl?: string
 	/** Logo Options */
 	logo?: LogoOptions
 	/** Theme options */
