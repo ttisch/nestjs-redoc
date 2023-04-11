@@ -30,7 +30,7 @@
     let themeJSON = '{{{ toJSON data.theme }}}';
     if (themeJSON === '') { themeJSON = undefined }
     Redoc.init(
-      '{{ data.docUrl }}',
+      '{{ data.options.pathPrefix }}{{ data.docUrl }}',
       {
         ...(themeJSON && {
           theme: {
