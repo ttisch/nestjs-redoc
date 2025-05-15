@@ -18,6 +18,7 @@
   "scripts": {
     "start:dev": "tsc -w",
     "build": "tsc",
+    "prepare": "yarn build",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
@@ -74,11 +75,8 @@
   "release-it": {
     "hooks": {
       "before:init": [
-        "npm run prepare",
-        "npm run format",
-        "npm run lint",
-        "",
-        "npm run test"
+        "yarn prepare",
+        "yarn build"
       ],
       "after:release": "echo ✅ Successfully released ${name} v${version} to ${npm.name}."
     },
